@@ -7,9 +7,12 @@ const App = () => {
     username: "",
     email: "",
     birthday: "",
+    country: "",
     password: "",
     confirmPassword: "",
   });
+
+  const [submitted, setSubmitted] = useState(false);
 
   const inputs = [
     {
@@ -20,7 +23,7 @@ const App = () => {
       errorMessage:
         "Username should be 3-16 characters and shouldn't include any special character!",
       label: "Username",
-      pattern: "^[A-Za-z0-9]{3,16}$",
+      pattern: "^[A-Za-z]{3,16}$",
       required: true,
     },
     {
@@ -30,6 +33,7 @@ const App = () => {
       placeholder: "Email",
       errorMessage: "It should be a valid email address!",
       label: "Email",
+      pattern: "[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}",
       required: true,
     },
     {
@@ -43,6 +47,26 @@ const App = () => {
     },
     {
       id: 4,
+      name: "country",
+      type: "select",
+      placeholder: "Select your country",
+      label: "Country",
+      options: [
+        "United States",
+        "United Kingdom",
+        "Canada",
+        "Australia",
+        "Germany",
+        "France",
+        "India",
+        "Japan",
+        "Brazil",
+        "Other",
+      ],
+
+    },
+    {
+      id: 5,
       name: "password",
       type: "password",
       placeholder: "Password",
@@ -53,7 +77,7 @@ const App = () => {
       required: true,
     },
     {
-      id: 5,
+      id: 6,
       name: "confirmPassword",
       type: "password",
       placeholder: "Confirm Password",
@@ -66,6 +90,7 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true);
 
     if (e.target.checkValidity()) {
       console.log("Form Data:", values);
@@ -75,9 +100,11 @@ const App = () => {
         username: "",
         email: "",
         birthday: "",
+        country: "",
         password: "",
         confirmPassword: "",
       });
+      setSubmitted(false);
     }
   };
 
@@ -87,16 +114,16 @@ const App = () => {
 
   return (
     <div className="app">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <h1>Register</h1>
-        {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />
-        ))}
+
+        <FormInput {...inputs[0]} value={values.username} onChange={onChange} submitted={submitted} />
+        <FormInput {...inputs[1]} value={values.email} onChange={onChange} submitted={submitted} />
+        <FormInput {...inputs[2]} value={values.birthday} onChange={onChange} submitted={submitted} />
+        <FormInput {...inputs[3]} value={values.country} onChange={onChange} submitted={submitted} />
+        <FormInput {...inputs[4]} value={values.password} onChange={onChange} submitted={submitted} />
+        <FormInput {...inputs[5]} value={values.confirmPassword} onChange={onChange} submitted={submitted} />
+
         <button>Submit</button>
       </form>
     </div>
