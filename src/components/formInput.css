@@ -1,34 +1,73 @@
-.formInput{
-    display: flex;
-    flex-direction: column;
-    width: 280px;
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  position: relative;
 }
 
-input{
-    padding: 15px;
-    margin: 10px 0px;
-    border-radius: 5px;
-    border: 1px solid gray;
+input,
+select {
+  padding: 15px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-
-label{
-    font-size: 15px;
-    color: rgb(0, 0, 0);
+input[type="password"],
+input[type="text"] {
+  padding-right: 45px;
 }
 
-span{
-    font-size: 14px;
-    padding: 3px;
-    color: rgb(172, 36, 36);
-    display: none;
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  display: block !important;
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+select option {
+  background: #111;
+}
+
+label {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+span:not(.eye-icon) {
+  font-size: 14px;
+  padding: 3px;
+  color: #ff6363;
+  display: none;
+}
+
+span.show {
+  display: block;
+}
+input.input-error,
+select.input-error {
+  border: 1px solid red;
 }
 
 input:invalid[focused="true"]:not(:placeholder-shown) {
   border: 1px solid red;
 }
 
-
-input:invalid[focused="true"]:not(:placeholder-shown) ~ span {
+input:invalid[focused="true"]:not(:placeholder-shown) ~ span:not(.eye-icon) {
   display: block;
 }
