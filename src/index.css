@@ -1,9 +1,12 @@
-/* body {
-  margin: 0;
-  height: 100vh;              
-  display: flex;
-  justify-content: center;    
-  align-items: center;       
-  background-color: #f4f6f8;
-  font-family: Arial, sans-serif;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import "tailwindcss";
+
+input[type="date"] {
+  color-scheme: dark;
+}
+input:invalid[focused="true"]:not(:placeholder-shown) {
+  border: 1px solid red !important;
+}
+input:invalid[focused="true"]:not(:placeholder-shown) ~ span.error-msg {
+  display: block !important;
+}
